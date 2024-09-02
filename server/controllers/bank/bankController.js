@@ -36,14 +36,14 @@ exports.verifyId = async (req, res, next) => {
   console.log('1111', id);
   const options = {
     method: 'GET',
-    url: 'https://bank-account-verification.p.rapidapi.com/v3/tasks',
+    url: 'https://indian-bank-account-verification.p.rapidapi.com/v3/tasks',
     params: {
       request_id: id,
     },
     headers: {
       // 'x-rapidapi-key': '544b42d2e2msh564105a57c22990p1342cfjsn72960564a3ba',
-      'x-rapidapi-key': '6b350e677dmsh12c5acecc5ff40dp1cf29ejsna629354ef77c',
-      'x-rapidapi-host': 'bank-account-verification.p.rapidapi.com',
+      'x-rapidapi-key': 'c52e248b26msh1585437c44a5746p10acfcjsn480bec4e2b17',
+      'x-rapidapi-host': 'indian-bank-account-verification.p.rapidapi.com',
     },
   };
 

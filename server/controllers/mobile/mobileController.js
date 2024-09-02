@@ -1,13 +1,16 @@
 const express = require('express');
 const twilio = require('twilio');
 
-const client = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+
+// const client = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+
 
 exports.sendOTP = async (req, res) => {
   const { phone } = req.body;
   try {
     await client.verify.v2
-      .services(TWILIO_SERVICE_ID)
+      .services(process.env.TWILIO_SERVICE_ID)
       .verifications.create({ to: phone, channel: 'sms' });
 
     res.status(200).send('OTP sent successfully');
@@ -20,7 +23,7 @@ exports.verifyOTP = async (req, res) => {
   const { phone, otp } = req.body;
   try {
     const verificationCheck = await client.verify.v2
-      .services(TWILIO_SERVICE_ID)
+      .services(process.env.TWILIO_SERVICE_ID)
       .verificationChecks.create({ to: phone, code: otp });
 
     if (verificationCheck.status === 'approved') {
